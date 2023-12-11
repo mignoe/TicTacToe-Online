@@ -10,3 +10,8 @@ lint:
 	$(PYLINT) *.py
 pep:
 	$(PEP) -i -v *.py
+clean:
+	find . -type d -name "__pycache__" -exec rm -rf {} +
+	rm -rf .pytest_cache
+	pipenv clean
+	pipenv --rm
