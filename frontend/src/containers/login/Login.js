@@ -1,24 +1,31 @@
 import "./Login.css"
 import React, { useState } from 'react';
+import axios from 'axios';
+
+const instance = axios.create({
+  baseURL: process.env.REACT_APP_ENV,
+});
 
 function Login() {
 
   return (
 
     <div className="login-container">
-      <form className="login-form">
+      <div className="login-form">
         <input type="text" placeholder="Username" id="username"/>
-        <input type="password" placeholder="Password" id="password" />
-        <button type="submit" onClick={Login()}>Login</button>
-      </form>
+        <button type="submit" onClick={() => make_login()}>Login</button>
+      </div>
     </div>
   );
 }
 
-function login() {
+function make_login() {
   let username = document.getElementById("username").value;
-  let password = document.getElementById("password").value;
-  console.log(username + " " + password)
+  
+  instance.post(`/login?username=${username}`).then((response) => {
+    localStorage.setItem("token", response.data.token);
+    console.log(response.data);
+  }).catch((error) => { console.log(error); });
 }
 
 export default Login;

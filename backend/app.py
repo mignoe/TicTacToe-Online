@@ -1,22 +1,19 @@
 from flask import Flask
 from flask import Flask, request
+from flask_cors import CORS
 
 app = Flask(__name__)
 
+CORS(app)
 
-app = Flask(__name__)
-
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+current_players = []
 
 @app.route("/login", methods=["POST"])
 def login():
-    username = request.form.get("username")
-    password = request.form.get("password")
+    username = request.args["username"]
 
-    # Check if the username and password are valid
-    if username == "admin" and password == "password":
-        return "Login successful"
+    if username in current_players:
+        return f"Username already taken ({current_players})"
     else:
-        return "Invalid username or password"
+        current_players.append(username)
+        return "Login successful"
