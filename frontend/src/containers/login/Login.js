@@ -2,23 +2,33 @@ import "./Login.css"
 import React, { useState } from 'react';
 
 function Login() {
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+
+  const login = () => {
+    console.log("USER => ", username)
+    console.log("PASS => ", password)
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login();
+  };
 
   return (
 
     <div className="login-container">
-      <form className="login-form">
-        <input type="text" placeholder="Username" id="username"/>
-        <input type="password" placeholder="Password" id="password" />
-        <button type="submit" onClick={Login()}>Login</button>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <input name="username" type="text" placeholder="Username" id="username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input type="password" placeholder="Password" id="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
       </form>
     </div>
   );
-}
-
-function login() {
-  let username = document.getElementById("username").value;
-  let password = document.getElementById("password").value;
-  console.log(username + " " + password)
 }
 
 export default Login;
