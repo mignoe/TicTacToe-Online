@@ -2,9 +2,10 @@
 Módulo com rotas iniciais básicas
 """
 from flask import Flask, request
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app, supports_credentials=True)
 
 @app.route("/")
 def hello_world():
@@ -26,6 +27,8 @@ def login():
     username = request.form.get("username")
     password = request.form.get("password")
 
+    print(username)
+    print(password)
     # Check if the username and password are valid
     if username == "admin" and password == "password":
         return "Login successful"
