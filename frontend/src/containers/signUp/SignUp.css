@@ -1,0 +1,46 @@
+/* FILEPATH: /c:/Users/migmi/OneDrive/Documentos/git/Online-TicTacToe/frontend/src/containers/login/Login.css */
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    background-color: #f2f2f2;
+}
+
+.signup-form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.signup-form button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.signup-form button:hover {
+    background-color: #0069d9;
+}

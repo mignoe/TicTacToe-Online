@@ -1,6 +1,7 @@
 import "./Login.css"
 import React, { useState } from 'react';
 import submitUserData from "../../service.js"
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState(null);
@@ -9,7 +10,7 @@ function Login() {
   const login = () => {
     	console.log("USER => ", username)
     	console.log("PASS => ", password)
-	submitUserData(username, password)	
+	submitUserData(username, password, "/login")	
   };
 
   const handleSubmit = (e) => {
@@ -27,6 +28,7 @@ function Login() {
         <input type="password" placeholder="Password" id="password"
           onChange={(e) => setPassword(e.target.value)}
         />
+        <Link to="/signUp">Sign Up</Link>
         <button type="submit">Login</button>
       </form>
     </div>

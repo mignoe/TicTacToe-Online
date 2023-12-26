@@ -1,6 +1,6 @@
 ## Você deve executar o seguinte comando para instalar os pré-requisitos do python:
 ```sh
-sudo apt update && sudo apt install libssl-dev python3-pip python3-dev -y
+sudo apt update && sudo apt install libssl-dev python3-pip python3-dev pipenv -y
 
 python3 -m pip install --upgrade pip
 python3 -m pip install --user pipenv
