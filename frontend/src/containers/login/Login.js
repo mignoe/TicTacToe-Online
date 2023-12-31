@@ -1,16 +1,26 @@
 import "./Login.css"
+
 import React, { useState } from 'react';
-import submitUserData from "../../service.js"
 import { Link } from 'react-router-dom';
+
+import submitUserData from "../../service.js"
+import displayError from "../../utils.js";
 
 function Login() {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
 
-  const login = () => {
-    	console.log("USER => ", username)
-    	console.log("PASS => ", password)
-	submitUserData(username, password, "/login")	
+  const login = async () => {
+    console.log("USERNAME => ", username);
+    console.log("PASSWORD => ", password);
+
+    let response = await submitUserData(username, password, "/login");
+    
+    if (response.status === 200) {
+      window.location.href = "/hub";
+    } else {
+      displayError(response.message)
+    }
   };
 
   const handleSubmit = (e) => {
@@ -29,6 +39,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Link to="/signUp">Sign Up</Link>
+        <p id="error-message"></p> 
         <button type="submit">Login</button>
       </form>
     </div>

@@ -1,16 +1,25 @@
 import "./SignUp.css"
 import React, { useState } from 'react';
 import submitUserData from "../../service.js"
+import displayError from "../../utils.js";
+
 
 function SignUp() {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
 
-  const signUp = () => {
+  const signUp = async () => {
     console.log("USERNAME => ", username);
     console.log("PASSWORD => ", password);
-    submitUserData(username, password, "/signUp");
+    
+    let response = await submitUserData(username, password, "/signUp");
+    
+    if (response.status === 200) {
+      window.location.href = "/login";
+    } else {
+      displayError(response.message);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -18,9 +27,7 @@ function SignUp() {
     if (password === confirmPassword) {
       signUp();
     } else {
-      const errorElement = document.getElementById("error-message");
-      errorElement.innerText = "Passwords do not match. Please try again.";
-      errorElement.style.color = "red";
+      displayError("Passwords do not match. Please try again.");
     }
   };
 
